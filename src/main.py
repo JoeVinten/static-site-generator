@@ -1,9 +1,20 @@
-from textnode import TextNode
+import os
+from generate_page import generate_page
+from copy_static import copy_static
+
+dir_path_static = "./static"
+dir_path_public = "./public"
+dir_path_content = "./content"
+template_path = "./template.html"
 
 
 def main():
-    node = TextNode("This is a text node", "bold", "https://www.boot.dev")
-    print(node)
+    copy_static(dir_path_static, dir_path_public)
+    generate_page(
+        os.path.join(dir_path_content, "index.md"),
+        template_path,
+        os.path.join(dir_path_public, "index.html"),
+    )
 
 
 main()
